@@ -91,7 +91,7 @@ if __name__ == "__main__":
         data_ext2.extend(tmp)
     
     data_ext1 = pd.DataFrame(data_ext1, columns=["sampleID", "read1"]).set_index("sampleID")
-    data_ext2 = pd.DataFrame(data_ext2, columns=["sampleID", "read1"])
+    data_ext2 = pd.DataFrame(data_ext2, columns=["sampleID", "read2"]).set_index("sampleID")
 
     sample_sheet = pd.concat([data_ext1, data_ext2], axis=1)
     if len(sample_sheet)==0:
