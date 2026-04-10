@@ -34,7 +34,7 @@ process RUN_FASTP{
         --json ${reads}_report.fastp.json \\
         --html ${reads}_report.fastp.html \\
         --detect_adapter_for_pe \\
-        --thread $task.cpus
+        --thread ${task.cpus} --cut_front --cut_tail
         """
     } else {
         """
@@ -45,7 +45,7 @@ process RUN_FASTP{
         fastp -i '${reads}' -o ${sample_id}/fastp/${sample_id}_trimmed.fastq.gz \\
         --json ${reads}_report.fastp.json \\
         --html ${reads}_report.fastp.html \\
-        --thread $task.cpus
+        --thread ${task.cpus} --cut_front --cut_tail
         """
     }
 }
