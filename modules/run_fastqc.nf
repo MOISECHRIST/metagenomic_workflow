@@ -12,7 +12,7 @@ process RUN_FASTQC{
     label 'low'
 
     input:
-    tuple val(sample_id), path(fastq_r1), path(fastq_r2)
+    tuple val(sample_id), path(reads)
 
     output:
     path "${sample_id}/fastqc", emit: fastqc_results
@@ -21,14 +21,8 @@ process RUN_FASTQC{
     """
     ## Make the output directory
     mkdir -p '${sample_id}/fastqc'
-
-    ## If fastq_r2 exist
-    if [ -f '${fastq_r2}' ]; then 
-        ## Run fastqc on 2 fastq files
-        fastqc -t '${task.cpus}' '${fastq_r1}' '${fastq_r2}' -o '${sample_id}/fastqc'
-    else
-        ## Run fastqc on one fastq files
-        fastqc -t '${task.cpus}' '${fastq_r1}' -o '${sample_id}/fastqc'
-    fi
+    
+    ## Then run fastqc on given fast
+    fastqc -t '${task.cpus}' '${reads}' -o '${sample_id}/fastqc'
     """
 }
