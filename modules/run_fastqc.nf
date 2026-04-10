@@ -1,9 +1,9 @@
 #!/usr/local/bin/nextflow
 
 /*
-## Author : MEKA Moise
-## Email : moise.meka@students.unibe.ch
-## Description : This process takes as input a fastq file and sampleID and execute fastqc on that fastq file
+ Author : MEKA Moise
+ Email : moise.meka@students.unibe.ch
+ Description : This process takes as input single/paire-end fastq files and sampleID, Then execute fastqc Quality Control on those fastq files
 */
 
 
@@ -15,7 +15,7 @@ process RUN_FASTQC{
     tuple val(sample_id), path(reads)
 
     output:
-    path "${sample_id}/fastqc", emit: fastqc_results
+    path "${sample_id}/fastqc", emit: qc_report
 
     script:
     """
